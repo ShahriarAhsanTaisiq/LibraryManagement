@@ -2,7 +2,6 @@ package com.springBoot.libraryManagement.service;
 
 import com.springBoot.libraryManagement.model.Book;
 import com.springBoot.libraryManagement.repository.BookRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookeService{
 
+    @Autowired
     private BookRepository bookRepository;
     @Override
     public Book saveBook(Book book) {
