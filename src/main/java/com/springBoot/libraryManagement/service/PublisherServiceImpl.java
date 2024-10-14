@@ -2,6 +2,7 @@ package com.springBoot.libraryManagement.service;
 
 import com.springBoot.libraryManagement.model.Publisher;
 import com.springBoot.libraryManagement.repository.PublisherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Optional;
 @Service
 public class PublisherServiceImpl implements PublisherService{
 
+    @Autowired
     private PublisherRepository publisherRepository;
     @Override
     public Publisher savePublisher(Publisher publisher) {
