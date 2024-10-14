@@ -14,7 +14,11 @@ import java.util.Optional;
 public class BookController {
 
     @Autowired
-    private BookeService bookeService;
+    private final BookeService bookeService;
+
+    public BookController(BookeService bookeService) {
+        this.bookeService = bookeService;
+    }
 
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book){
@@ -35,5 +39,35 @@ public class BookController {
         Optional<Book> book = bookeService.getBookById(id);
         return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound()
                 .build());
+    }
+
+    //Get book by isbn
+    @GetMapping("/isbn/{isbn}")
+    public ResponseEntity<Book> getBookByIsbn(@PathVariable String isbn){
+        Optional<Book> book = bookeService.getBookByIsbn(isbn);
+        return book.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Update a book
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book){
+        Optional<Book> existingBook = bookeService.getBookById(id);
+        if (existingBook.isPresent()){
+            book.setId(id);
+            Book updateBook = bookeService.updateBook(book);
+            return ResponseEntity.ok(updateBook);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // Delete a book
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id){
+        Optional<Book> book = bookeService.getBookById(id);
+        if (book.isPresent()){
+            bookeService.deleteBook(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
