@@ -9,5 +9,6 @@ public interface AuthorService {
     Author saveAuthor(Author author);
     List<Author> getAllAuthor();
     Optional<Author> getAuthorById(Long id);
+    Author updateAuthor(Author author);
     void deleteAuthor(Long id);
 }
