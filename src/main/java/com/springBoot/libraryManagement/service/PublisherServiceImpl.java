@@ -27,6 +27,11 @@ public class PublisherServiceImpl implements PublisherService{
     }
 
     @Override
+    public Publisher update(Publisher publisher) {
+        return publisherRepository.save(publisher);
+    }
+
+    @Override
     public void deletePublisher(Long id) {
         publisherRepository.deleteById(id);
     }

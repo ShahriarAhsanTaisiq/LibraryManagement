@@ -9,5 +9,6 @@ public interface PublisherService {
     Publisher savePublisher(Publisher publisher);
     List<Publisher> getAllPublisher();
     Optional<Publisher> getPublisherById(Long id);
+    Publisher update(Publisher publisher);
     void deletePublisher(Long id);
 }
