@@ -12,7 +12,12 @@ import java.util.Optional;
 public class AuthorServiceImpl implements AuthorService{
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
+
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
     @Override
     public Author saveAuthor(Author author) {
         return authorRepository.save(author);

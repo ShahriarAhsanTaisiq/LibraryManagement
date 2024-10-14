@@ -12,7 +12,12 @@ import java.util.Optional;
 public class PublisherServiceImpl implements PublisherService{
 
     @Autowired
-    private PublisherRepository publisherRepository;
+    private final PublisherRepository publisherRepository;
+
+    public PublisherServiceImpl(PublisherRepository publisherRepository) {
+        this.publisherRepository = publisherRepository;
+    }
+
     @Override
     public Publisher savePublisher(Publisher publisher) {
         return publisherRepository.save(publisher);

@@ -12,7 +12,12 @@ import java.util.Optional;
 public class BookServiceImpl implements BookeService{
 
     @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
     @Override
     public Book saveBook(Book book) {
         return bookRepository.save(book);

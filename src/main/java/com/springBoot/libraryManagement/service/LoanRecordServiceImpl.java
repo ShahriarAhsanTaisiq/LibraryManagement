@@ -11,7 +11,12 @@ import java.util.List;
 public class LoanRecordServiceImpl implements LoanRecordService{
 
     @Autowired
-    private LoanRecordRepository loanRecordRepository;
+    private final LoanRecordRepository loanRecordRepository;
+
+    public LoanRecordServiceImpl(LoanRecordRepository loanRecordRepository) {
+        this.loanRecordRepository = loanRecordRepository;
+    }
+
     @Override
     public LoanRecord saveLoanRecord(LoanRecord loanRecord) {
         return loanRecordRepository.save(loanRecord);

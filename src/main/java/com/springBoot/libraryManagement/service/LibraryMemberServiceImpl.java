@@ -12,7 +12,12 @@ import java.util.Optional;
 public class LibraryMemberServiceImpl implements LibraryMemberService{
 
     @Autowired
-    private LibraryMemberRepository libraryMemberRepository;
+    private final LibraryMemberRepository libraryMemberRepository;
+
+    public LibraryMemberServiceImpl(LibraryMemberRepository libraryMemberRepository) {
+        this.libraryMemberRepository = libraryMemberRepository;
+    }
+
     @Override
     public LibraryMember saveLibraryMember(LibraryMember libraryMember) {
         return libraryMemberRepository.save(libraryMember);
